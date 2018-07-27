@@ -1,6 +1,6 @@
 Heroine.destroy_all
 Power.destroy_all
-
+	# 1.	Create the associations between models. You may have to alter the current schema to get your code working. If you've set up your relationships properly, you should be able to run rake db:seed without errors, and confirm in console that the heroines and powers have been created with the proper relations.
 powers = [
   {name:"super strength", description: "gives the wielder super-human strengths" },
   {name:"flight", description: "gives the wielder the ability to fly through the skies at supersonic speed" },
