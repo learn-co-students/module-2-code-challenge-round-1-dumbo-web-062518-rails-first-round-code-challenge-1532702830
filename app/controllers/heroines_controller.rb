@@ -1,6 +1,11 @@
 class HeroinesController < ApplicationController
   def index
-    @heroines = Heroine.all
+    if params.has_key?(:q) && params[:q] != ""
+      @power = Power.find_by(name: params[:q])
+      @heroines = Heroine.where("power_id = #{@power.id}")
+    else
+      @heroines = Heroine.all
+    end
   end
 
   def new
@@ -35,16 +40,16 @@ class HeroinesController < ApplicationController
     end
   end
 
-  def search
-    @heroines = Heroine.all
-
-    if !params[:q].empty?
-      @power = Power.find_by(name: params[:q])
-      @heroines = Heroine.where("power_id = #{@power.id}")
-    else
-      render :index
-    end
-  end
+  # def search
+  #   @heroines = Heroine.all
+  #
+  #   if !params[:q].empty?
+  #     @power = Power.find_by(name: params[:q])
+  #     @heroines = Heroine.where("power_id = #{@power.id}")
+  #   else
+  #     render :index
+  #   end
+  # end
 
   private
 
