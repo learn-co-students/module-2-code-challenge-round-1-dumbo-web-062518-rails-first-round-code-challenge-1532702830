@@ -1,0 +1,14 @@
+<h1>Create a Heroine!</h1>
+<% @heroine.errors.full_messages.each do |message| %>
+<li><%= message.capitalize %></li><br>
+<% end %>
+<% @heroine.errors.clear %>
+<%= form_for @heroine do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+  <%= f.label :super_name %>
+  <%= f.text_field :super_name %><br><br>
+  <%= f.label :power_id %>
+  <%= f.collection_select :power_id, Power.all, :id, :name %><br><br>
+  <%= f.submit "To The Fray!" %>
+<% end %>
