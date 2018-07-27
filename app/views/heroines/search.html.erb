@@ -1,0 +1,7 @@
+<h1>All heroines with <%= @power.name %></h1>
+
+<ul>
+  <% @heroines.each do |heroine| %>
+    <li><%= heroine.name %> - <%= heroine.super_name %></li>
+  <% end %>
+</ul>
