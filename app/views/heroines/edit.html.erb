@@ -1,0 +1,14 @@
+<h1>Edit Heroine</h1>
+
+<ul class="errors">
+  <% @heroine.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+
+<%= form_for @heroine do |f| %>
+  <p><%= f.label :name %>: <%= f.text_field :name %></p>
+  <p><%= f.label :super_name %>: <%= f.text_field :super_name %></p>
+  <p><%= f.collection_select :power_id, Power.all, :id, :name %></p>
+  <p><%= f.submit %></p>
+<% end %>

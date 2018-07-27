@@ -21,9 +21,29 @@ class HeroinesController < ApplicationController
     @heroine = Heroine.find(params[:id])
   end
 
+  def edit
+    @heroine = Heroine.find(params[:id])
+  end
+
+  def update
+    @heroine = Heroine.find(params[:id])
+
+    if @heroine.update(heroine_params)
+      redirect_to @heroine
+    else
+      render :edit
+    end
+  end
+
   def search
-    @power = Power.find_by(name: params[:q])
-    @heroines = Heroine.where("power_id = #{@power.id}")
+    @heroines = Heroine.all
+
+    if !params[:q].empty?
+      @power = Power.find_by(name: params[:q])
+      @heroines = Heroine.where("power_id = #{@power.id}")
+    else
+      render :index
+    end
   end
 
   private
